@@ -29,6 +29,7 @@ exports.getRegisterPage = (req, res) => {
     });
   }
   exports.sendEmail = async (req, res) => {
+    try{
     const outputMessage = `
     <h1>Mail Details</h1>
     <ul>
@@ -63,5 +64,11 @@ exports.getRegisterPage = (req, res) => {
     // Preview only available when sending through an Ethereal account
     console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
     // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+    req.flash("succes","We Recieved your message successfuly")
     res.status.redirect('contact')
+    }catch(err){
+      req.flash("error",`Something Happened! ${err}`)
+      res.status.redirect('contact')
+
+    }
   }
