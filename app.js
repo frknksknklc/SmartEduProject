@@ -41,12 +41,11 @@ app.use(session({
     saveUninitialized: true,
     store: MongoStore.create({ mongoUrl: 'mongodb://localhost:27017/smartedu-db' })
   }))
-app.use(flash())
-app.use((req, res, next) =>{
-    res.locals.flashMessage = req.flash()
-    next()
-})
-
+app.use(flash());
+app.use((req, res, next)=> {
+    res.locals.flashMessages = req.flash();
+    next();
+  })
 
 //Routes
 app.use('*',(req,res,next) =>{

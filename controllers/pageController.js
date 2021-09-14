@@ -68,7 +68,7 @@ exports.getRegisterPage = (req, res) => {
     res.status.redirect('contact')
     }catch(err){
       req.flash("error",`Something Happened! ${err}`)
-      res.status.redirect('contact')
+      res.status(200).redirect('contact')
 
     }
   }
